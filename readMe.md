@@ -31,5 +31,5 @@ sistemaswebpucrs
 3. Abra o arquivo index.hmtl em seu navegador.
 
 ## Online
-## Acesse a versão no GitHub Pages
+#### Acesse a versão no GitHub Pages:
 [https://silvaoliveirajoao.github.io/sistemaswebpucrs/](https://silvaoliveirajoao.github.io/sistemaswebpucrs/)
