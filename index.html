@@ -1,93 +1,414 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oliveira's Minimercado</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oliveira's Minimercado</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: #ffffff;
+    }
+    header {
+      background-color: #166534;
+      color: #ffffff;
+      padding: 10px 0;
+    }
+    .header-extra {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      font-size: 0.9rem;
+    }
+    .header-extra .nav,
+    .header-extra .search-bar,
+    .header-extra .cart-link,
+    .header-extra a {
+      font-size: 0.9rem;
+    }
+    header .nav-link,
+    header .navbar-brand {
+      color: #ffffff !important;
+      margin-right: 15px;
+    }
+    .btn-primary {
+      background-color: #166534;
+      border-color: #166534;
+    }
+    .btn-primary:hover {
+      background-color: #145c2e;
+      border-color: #145c2e;
+    }
+    .carousel-img {
+      max-height: 300px;
+      object-fit: cover;
+    }
+    .content-divider {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+    .card {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+      background-color: #166534;
+      color: #ffffff;
+      padding: 20px 0;
+      font-size: 0.85rem;
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-container > div {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+    .footer-container ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    .footer-container a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Oliveira's Minimercado</h1>
-        <nav>
-            <ul>
-                <li><a href="#frutas-verduras">Frutas e Verduras</a></li>
-                <li><a href="#alimentos-nao-pereciveis">Alimentos Não Perecíveis</a></li>
-                <li><a href="#higiene-limpeza">Higiene e Limpeza</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-            </ul>
+  <!-- header com elementos de navegação -->
+  <header>
+    <div class="container header-extra">
+      <div class="d-flex align-items-center">
+        <h1 class="mb-0 mr-3">Oliveira's Minimercado</h1>
+        <nav class="d-none d-md-block">
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cadastroModal" data-toggle="modal">Cadastro</a></li>
+          </ul>
         </nav>
-    </header>
-    <main>
-        <section id="frutas-verduras">
-            <h2>Frutas e Verduras</h2>
-            <div>
-                <h3>Maçã Gala</h3>
-                <img src="public/maca.jpg" alt="Maçã" width="150px" height="150px">
-                <p>Descrição: Maçã Gala fresca e crocante.</p>
-                <p>Valor: R$ 10,50/Kg</p>
+      </div>
+      <div class="d-flex align-items-center">
+        <form class="form-inline search-bar">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar produtos" aria-label="Buscar">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <a href="#" class="nav-link cart-link text-white">Carrinho</a>
+        <a href="#" class="nav-link text-white">Minha Conta</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- carrossel com imagens de produtos/serviços -->
+  <div id="productCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#productCarousel" data-slide-to="1"></li>
+      <li data-target="#productCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <!-- slide 1 -->
+      <div class="carousel-item active">
+        <img src="public/limpeza.png" class="d-block w-100 carousel-img" alt="Foto de produto de limpeza">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Produtos de Limpeza</h5>
+          <p>Descontos especiais em produtos de limpeza neste mês!</p>
+        </div>
+      </div>
+      <!-- slide 2 -->
+      <div class="carousel-item">
+        <img src="public/frutas.png" class="d-block w-100 carousel-img" alt="Foto de produto de limpeza">
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Frutas frescas!</h5>
+            <p>Aproveite nossa promoção de frutas frescas toda quarta-feira!</p>  
+        </div>
+      </div>
+      <!-- slide 3 -->
+      <div class="carousel-item">
+        <img src="public/delivery.png" class="d-block w-100 carousel-img" alt="Foto de produto de limpeza">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Entrega rápida!</h5>
+          <p>Receba suas compras em até 2 horas na região de Tijucas-SC!</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Próximo</span>
+    </a>
+  </div>
+
+  <main class="container">
+    <!-- Seção de produtos em Cards p/ produtos -->
+    <section id="produtos" class="content-divider">
+      <h2>Produtos</h2>
+      <div class="row">
+        <!-- card 1: Maçã Gala -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="public/maca.jpg" class="card-img-top" alt="Maçã Gala: fruta fresca e crocante">
+            <div class="card-body">
+              <h5 class="card-title">Maçã Gala</h5>
+              <p class="card-text" style="color: black;">Maçã Gala fresca e crocante.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 10,50/Kg</p>
             </div>
-            <div>
-                <h3>Banana Caturra</h3>
-                <img src="public/banana.jpg" alt="Banana" width="150px" height="150px">
-                <p>Descrição: Banana Caturra madura e doce.</p>
-                <p>Valor: R$ 6,50/Kg</p>
+          </div>
+        </div>
+        <!-- card 2: Banana Caturra -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="public/banana.jpg" class="card-img-top" alt="Banana Caturra: banana madura e doce">
+            <div class="card-body">
+              <h5 class="card-title">Banana Caturra</h5>
+              <p class="card-text" style="color: black;">Banana Caturra madura e doce.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 6,50/Kg</p>
             </div>
-        </section>
-        <section id="alimentos-nao-pereciveis">
-            <h2>Produtos Alimentícios Não Perecíveis</h2>
-            <div>
-                <h3>Arroz Branco - Tio João</h3>
-                <img src="public/arroz.jpg" alt="Arroz" width="150px" height="150px">
-                <p>Descrição: Arroz branco Tio João de alta qualidade.</p>
-                <p>Valor: R$ 5,00/Kg</p>
+          </div>
+        </div>
+        <!-- card 3: Arroz Branco -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="public/arroz.jpg" class="card-img-top" alt="Arroz Branco - Tio João">
+            <div class="card-body">
+              <h5 class="card-title">Arroz Branco - Tio João</h5>
+              <p class="card-text" style="color: black;">Arroz branco Tio João de alta qualidade.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 5,00/Kg</p>
             </div>
-            <div>
-                <h3>Feijão Carioca - Tio João</h3>
-                <img src="public/feijao.jpg" alt="Feijão" width="150px" height="150px">
-                <p>Descrição: Feijão carioca Tio João de alta qualidade.</p>
-                <p>Valor: R$ 6,00/Kg</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- card 4: Feijão Carioca -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="public/feijao.jpg" class="card-img-top" alt="Feijão Carioca - Tio João">
+            <div class="card-body">
+              <h5 class="card-title">Feijão Carioca - Tio João</h5>
+              <p class="card-text" style="color: black;">Feijão carioca Tio João de alta qualidade.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 6,00/Kg</p>
             </div>
-        </section>
-        <section id="higiene-limpeza">
-            <h2>Produtos de Higiene e Limpeza</h2>
-            <div>
-                <h3>Sabão em Pó - Omo</h3>
-                <img src="public/sabao.png" alt="Sabão em Pó" width="150px" height="150px">
-                <p>Descrição: Sabão em pó Omo para roupas.</p>
-                <p>Valor: R$ 10,00/unidade</p>
+          </div>
+        </div>
+        <!-- card 5: Sabão em Pó -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="public/sabao.png" class="card-img-top" alt="Sabão em Pó - Omo">
+            <div class="card-body">
+              <h5 class="card-title">Sabão em Pó - Omo</h5>
+              <p class="card-text" style="color: black;">Sabão em pó Omo para roupas.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 10,00/unidade</p>
             </div>
-            <div>
-                <h3>Detergente</h3>
-                <img src="public/detergente.png" alt="Detergente" width="150px" height="150px">
-                <p>Descrição: Detergente Ypê líquido.</p>
-                <p>Valor: R$ 2,19/unidade</p>
+          </div>
+        </div>
+        <!-- card 6: Detergente -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="public/detergente.png" class="card-img-top" alt="Detergente Ypê">
+            <div class="card-body">
+              <h5 class="card-title">Detergente</h5>
+              <p class="card-text" style="color: black;">Detergente Ypê líquido.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 2,19/unidade</p>
             </div>
-        </section>
-        <section id="servicos">
-            <h2>Serviços</h2>
-            <div>
-                <h3>Retirada no Local</h3>
-                <p>Descrição: Retire seus produtos diretamente no minimercado.</p>
-                <p>Valor: Gratuito</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- section de serviços -->
+    <section id="servicos" class="content-divider">
+      <h2>Serviços</h2>
+      <div class="row">
+        <!-- card: Retirada no Local -->
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Retirada no Local</h5>
+              <p class="card-text" style="color: black;">Retire seus produtos diretamente no minimercado.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">Gratuito</p>
             </div>
-            <div>
-                <h3>Tele-entrega (delivery)</h3>
-                <p>Descrição: Receba suas compras no conforto de sua casa.</p>
-                <p>Valor: R$ 20,00 por entrega (região de Tijucas-SC)</p>
+          </div>
+        </div>
+        <!-- card: Tele-entrega -->
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tele-entrega (Delivery)</h5>
+              <p class="card-text" style="color: black;">Receba suas compras no conforto de sua casa.</p>
+              <p class="card-text font-weight-bold" style="color: #166534;">R$ 20,00 por entrega (região de Tijucas-SC)</p>
             </div>
-        </section>
-    </main>
-    <footer>
-        <nav>
-            <ul>
-                <li><a href="#frutas-verduras">Frutas e Verduras</a></li>
-                <li><a href="#alimentos-nao-pereciveis">Alimentos Não Perecíveis</a></li>
-                <li><a href="#higiene-limpeza">Higiene e Limpeza</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-            </ul>
-        </nav>
-        <p>© 2025 Oliveira's Minimercado. Todos os direitos reservados.</p>
-        <p>Contato: contato@oliveiraminimercado.com.br</p>
-    </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- botão da modal de cadastro -->
+    <div class="text-center my-5">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastroModal">
+        Cadastro de Cliente e Agendamento
+      </button>
+    </div>
+  </main>
+
+  <!-- modal para cadastro de cliente e cgendamento -->
+  <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #166534; color: #ffffff;">
+          <h5 class="modal-title" id="cadastroModalLabel">Cadastro de Cliente e Agendamento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true" style="color: #ffffff;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="formCadastro" class="needs-validation" novalidate>
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+              <div class="invalid-feedback">
+                Por favor, informe seu nome.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="endereco">Endereço:</label>
+              <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite seu endereço" required>
+              <div class="invalid-feedback">
+                Por favor, informe seu endereço.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cpf">CPF:</label>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+              <div class="invalid-feedback">
+                Por favor, informe seu CPF.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Sexo:</label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino" required>
+                <label class="form-check-label" for="masculino">Masculino</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sexo" id="feminino" value="feminino">
+                <label class="form-check-label" for="feminino">Feminino</label>
+              </div>
+              <div class="invalid-feedback">
+                Por favor, selecione seu sexo.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+              <div class="invalid-feedback">
+                Por favor, informe seu telefone.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="exemplo@dominio.com" required>
+              <div class="invalid-feedback">
+                Por favor, informe um e-mail válido.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Escolha o Serviço:</label><br>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="servico" id="retirada" value="retirada" required>
+                <label class="form-check-label" for="retirada">Retirada no Local</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="servico" id="teleentrega" value="teleentrega" required>
+                <label class="form-check-label" for="teleentrega">Tele-entrega (Delivery)</label>
+              </div>
+              <div class="invalid-feedback">
+                Por favor, selecione um serviço.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="agendamento">Agendamento (Data e Horário):</label>
+              <input type="datetime-local" class="form-control" id="agendamento" name="agendamento" required>
+              <div class="invalid-feedback">
+                Por favor, informe a data e horário para agendamento.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar e Agendar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer básico -->
+  <footer>
+    <div class="container footer-container">
+      <div>
+        <h5>Oliveira's Minimercado</h5>
+        <p>Seu minimercado de confiança com produtos selecionados para você.</p>
+      </div>
+      <div>
+        <h5>Links Rápidos</h5>
+        <ul>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#cadastroModal" data-toggle="modal">Cadastro</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <p>Email: contato@oliveiraminimercado.com.br</p>
+        <p>Telefone: (00) 0000-0000</p>
+        <p>Endereço: Rua das Oliveiras, 123 - Tijucas, SC</p>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <p>© 2025 Oliveira's Minimercado. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- src javascript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // validation do form com Bootstrap
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              event.preventDefault();
+              // Simulação do processamento do formulário (pode ser substituído por envio via AJAX)
+              alert('Cadastro e agendamento realizados com sucesso!');
+              form.reset();
+              $('#cadastroModal').modal('hide');
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+
+    // função de tempo que exibe a data/hora atual no console a cada min
+    function exibirDataHoraAtual() {
+      const dataHora = new Date();
+      console.log("Data e Hora Atual:", dataHora.toLocaleString());
+    }
+    setInterval(exibirDataHoraAtual, 60000);
+  </script>
 </body>
 </html>

@@ -15,6 +15,7 @@
 * Git: Para o versionamento do código.
 * GitHub: Para hospedar o repositório remoto.
 * GitHub Pages: Para o deploy e acesso online ao projeto.
+* Bootstrap: Para estilização.
 
 #### Essa combinação de ferramentas permite que o projeto seja facilmente acessado e modificado por outros desenvolvedores em diferentes máquinas, promovendo colaboração simultânea.
 
